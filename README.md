@@ -16,10 +16,8 @@
   <a href="http://ECemble.readthedocs.io">
     <img src="https://readthedocs.org/projects/ECemble/badge/?version=latest"/>
   </a>
-  <a href="http://ECemble.readthedocs.io">
-    <img src="https://readthedocs.org/projects/ECemble/badge/?version=latest"/>
-  </a>
   <a href="https://travis-ci.org/akram-mohammed/ECemble">
+    <img src="https://travis-ci.org/akram-mohammed/ECemble.svg?branch=master">
   </a>
   <a href="https://saythanks.io/to/akram-mohammed">
     <img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square">
