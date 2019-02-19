@@ -142,7 +142,9 @@ After downloading **ECemble**, notice inside the **ECemble** directory there are
 ### Contribution
 
   Akram Mohammed (Author and Maintainer)	akrammohd@gmail.com
+  
   Babu Guda (Principal Investigator)      babu.guda@unmc.edu
+  
 
 ### License
 This software has been released under the [GNU General Public License v3](LICENSE.md).
