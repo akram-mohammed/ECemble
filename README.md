@@ -139,11 +139,31 @@ After downloading **ECemble**, notice inside the **ECemble** directory there are
 
 
 
-### Contribution
-
-  Akram Mohammed (Author and Maintainer)	akrammohd@gmail.com
-  
-  Babu Guda (Principal Investigator)      babu.guda@unmc.edu
+### Team
+<table align="center">
+  <tbody>
+    <tr>
+		<td align="center" valign="top">
+			<img height="150" src="https://github.com/akram-mohammed.png?s=150">
+			<br>
+			<a href="https://github.com/akram-mohammed">Dr. Akram Mohammed</a>
+			<br>
+			<a href="mailto:akrammohd@gmail.com">akrammohd@gmail.com</a>
+			<br>
+			<p>Author and Maintainer</p>
+		</td>
+	 	<td align="center" valign="top">
+			<img width="150" height="150" src="https://www.unmc.edu/inbre/cores/bioinformatics/Guda_small.png?s=150">
+			<br>
+			<a href="https://www.unmc.edu/genetics/faculty/research/guda.html">Dr. Babu Guda</a>
+			<br>
+			<a href="mailto:babu.guda@unmc.edu">babu.guda@unmc.edu</a>
+			<br>
+			<p>Principal Investigator</p>
+		</td>
+	  </tr>
+  </tbody>
+</table>
   
 
 ### License
