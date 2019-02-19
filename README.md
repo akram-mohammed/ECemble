@@ -28,10 +28,9 @@
 </p>
 
 **ECemble** is an open source ensemble machine learning pipeline tool (released under the [GNU General Public License v3](LICENSE.md)) that allow users to efficiently and automatically process proteomes to predict enzyme and enzyme classes from unannotated protein sequences. ECemble uses various learning algorithms to generate multiple prediction models that distinguish different classes of enzymes, where it first predicts if a protein is an enzyme or a non-enzyme, and then subsequently predict specific class and subclass of an enzyme in the EC number hierarchy. The predictions are selected when at least two of the three top-performing ML classifiers show consistent predictions.
-If you use this resource, please cite the following reference: 
-Mohammed A, Guda C. Application of Hierarchical enzyme classification method reveals the role gut microbiome in human metabolism. BMC Genomics 2015
-https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-16-S7-S16
 
+**Citation:** If you use this resource, please cite the following reference: 
+Mohammed A, Guda C. **Application of Hierarchical enzyme classification method reveals the role gut microbiome in human metabolism.** BMC Genomics 2015 https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-16-S7-S16
 
 ***Note***: ECemble is an open-source software, in case if you run across bugs or errors, raise an issue over [here](https://github.com/akram-mohammed/ECemble/issues).
 
@@ -142,7 +141,8 @@ After downloading **ECemble**, notice inside the **ECemble** directory there are
 
 ### Contribution
 
-  Akram Mohammed	akrammohd@gmail.com
+  Akram Mohammed (Author and Maintainer)	akrammohd@gmail.com
+  Babu Guda (Principal Investigator)      babu.guda@unmc.edu
 
 ### License
 This software has been released under the [GNU General Public License v3](LICENSE.md).
