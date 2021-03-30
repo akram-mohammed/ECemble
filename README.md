@@ -155,7 +155,7 @@ After downloading **ECemble**, notice inside the **ECemble** directory there are
 	 	<td align="center" valign="top">
 			<img width="150" height="150" src="https://www.unmc.edu/inbre/cores/bioinformatics/Guda_small.png?s=150">
 			<br>
-			<a href="https://www.unmc.edu/genetics/faculty/research/guda.html">Dr. Babu Guda</a>
+			<a href="https://www.unmc.edu/bsbc/people/guda.html">Dr. Babu Guda</a>
 			<br>
 			<a href="mailto:babu.guda@unmc.edu">babu.guda@unmc.edu</a>
 			<br>
