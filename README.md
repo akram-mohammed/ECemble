@@ -9,7 +9,7 @@
 </h1>
 
 <h4 align="center">
-  A data mining suite for enzyme classification
+  A hierarchical machine learning method for enzyme class prediction
 </h4>
 
 <p align="center">
