@@ -52,59 +52,151 @@ $ git clone https://github.com/akram-mohammed/ECemble.git && cd ECemble
 ```
 
 ### Dependencies 
-Before downloading **ECemble**, make sure you have all the necessary software packages installed. 
-#### Installing R
-From the command line, enter the following commands below: 
+After downloading **ECemble**, make sure you install all the necessary software packages. 
 ```
-sudo apt-get update
-sudo apt-get install r-base
+cd ECemble
+mkdir bin/lib/PFAM bin/lib/PROSITE bin/lib/SUPERFAMILY bin/lib/WEKA bin/lib/hmmer
 ```
+#### Installing PFAM
+```
+cd bin/lib/PFAM
+wget ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam26.0/Pfam-A.hmm.gz
+gunzip Pfam-A.hmm.gz
+```
+#### Installing HAMMER
+```
+cd bin/lib/hmmer
+wget ftp://selab.janelia.org/pub/software/hmmer3/3.1b1/hmmer-3.1b1-linux-intel-x86_64.tar.gz
+tar zxf hmmer-3.1b1-linux-intel-x86_64.tar.gz
+rm hmmer-3.1b1-linux-intel-x86_64.tar.gz
+./configure
+make 
+make check
+./src/hmmpress ../PFAM/Pfam-A.hmm
+```
+#### Installing PROSITE
+```
+cd bin/lib/PROSITE
+wget ftp://ftp.expasy.org/databases/prosite/ps_scan/ps_scan_linux_x86_elf.tar.gz
+tar zxf ps_scan_linux_x86_elf.tar.gz
+rm ps_scan_linux_x86_elf.tar.gz
+wget ftp://ftp.expasy.org/databases/prosite/prosite.dat
+```
+#### Installing SCOP
+```
+cd bin/lib/SUPERFAMILY
+ftp supfam.org
+username: license
+password: SlithyToves
+cd models
+get model.tab.gz
+get hmmlib_1.75.gz
+get self_hits.tab.gz
+cd ../sequences
+get pdbj95d.gz
+cd ../scripts
+mget *
+bye
 
-#### Installing Bioconductor and R packages
-**Run R**
+wget http://scop.mrc-lmb.cam.ac.uk/scop/parse/dir.des.scop.txt_1.75
+wget http://scop.mrc-lmb.cam.ac.uk/scop/parse/dir.cla.scop.txt_1.75
+mv dir.des.scop.txt_1.75 dir.des.scop.txt
+mv dir.cla.scop.txt_1.75 dir.cla.scop.txt
 
-Once `R` is installed you’ll need to run the commands from within `R`.
-From the commandline enter the following command:
+gunzip pdbj95d.gz
+gunzip model.tab.gz
+gunzip hmmlib_1.75.gz
+mv hmmlib_1.75 hmmlib
+gunzip self_hits.tab.gz
+chmod u+x *.pl
+.././hmmer/src/hmmpress hmmlib
 ```
-R
+#Change the paths in ass3.pl, line 13-16
 ```
+my $selfhits = "./../lib/SUPERFAMILY/self_hits.tab";
+my $clafile      = "./../lib/SUPERFAMILY/dir.cla.scop.txt";
+my $modeltab     = "./../lib/SUPERFAMILY/model.tab";
+my $pdbj95d      = "./../lib/SUPERFAMILY/pdbj95d";
+```
+#Make changes in superfamily.pl
+```
+line 20	system "perl ../lib/SUPERFAMILY/fasta_checker.pl $ARGV[0] >../test/scratch/$file\_torun.fa";
+line 24 system "../lib/hmmer/src/hmmscan -o ../test/scratch/$file.res -E 1e-04 -Z 15438 ../lib/SUPERFAMILY/hmmlib ../test/scratch/$file\_torun.fa";
+line 28 system "perl ../lib/SUPERFAMILY/ass3.pl -t n -f 40 -e 0.0001 ../test/scratch/$file\_torun.fa ../test/scratch/$file.res ../test/scratch/$file.ass ";
+#comment lines
+line 31 print "Running ass_to_html\n";
+line 32 system "ass_to_html.pl dir.des.scop.txt model.tab $file.ass > $file.html";
+```
+#### Installing WEKA
+```
+wget http://prdownloads.sourceforge.net/weka/weka-3-7-6.zip
+unzip weka-3-7-6.zip
+mv weka-3-7-6 ../lib/
+rm weka-3-7-6.zip
+cd ../lib/weka-3-7-6
+jar -xvf weka.jar
+jar -xvf weka-src.jar
+```
+# set classpath
 
-**Install Bioconductor**
+#### UpdateWeka
+# UpdateWeka
 
-Once R has finished loading, enter the following command:
-```
-source("http://bioconductor.org/biocLite.R")
-```
+1) Acquire weka-src.jar (this should just be in the directory where you install weka).
 
-If there is a updated bioconductor package is available, run the following command:
-```
-biocLite("BiocUpgrade")
-```
+2) Make a working directory which will house your modified version of weka (dist/ folder)
 
-**Install Affy R module**
+3) Unzip weka-src.jar into this working directory (simply unzip weka-src.jar)
 
-Enter the following command to install the `Affy` `R` package:
-```
-biocLite("affy")
-```
+5) Write your class or make changes to existing weka classes
 
-**Annotation Database Interface**
+7) Make the executable jar by running “ant exejar”
 
-You will also need a package called `AnnotationDbi` which can be installed with the command below:
-```
-biocLite("AnnotationDbi")
-```
+8) Check out the dist/ folder for your hot new weka.jar (which should have your new classes in it!)
 
-It provides user interface and database connection code for annotation data packages using SQLite data storage.
+# .bash_profile
+ANT_HOME=/storage_m/akram/akram/ECemble/lib/apache-ant-1.9.4
+export ANT_HOME
 
-**CDF (Chip Definition File)**
+CLASSPATH=/storage_m/akram/akram/ECemble/lib/apache-ant-1.9.4/lib
+export CLASSPATH
 
-Command to download the plate *HG_U133_Plus2* `cdf`:
-```
-biocLite("hgu133plus2cdf")
-```
+PATH=$PATH:$HOME/bin:/storage_m/akram/akram/ECemble/lib/apache-ant-1.9.4/bin
+export PATH
 
-It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy` `R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed.
+#execute at ANT_HOME
+export ANT_OPTS=-Dbuild.sysclasspath=ignore
+ant -f fetch.xml -Ddest=system
+chmod u+x /storage_m/akram/akram/ECemble/lib/apache-ant-1.9.4/bin/ant
+
+mkdir dist 
+cp weka-src.jar dist/
+cd dist
+jar -xf weka-src.jar
+
+#add whatever java classifier in src/main directory
+/ECemble/lib/weka-3-7-6/dist/src/main/java/weka/classifiers/evaluation/output/prediction/PlainText.java
+Change line 154 to int width = 12 + m_NumDecimals;
+
+ant compile
+ant exejar #creates dist/weka.jar
+cp -r * ../
+cd ../
+jar -xf weka.jar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #### Installing WEKA
 This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `ECemble` directory, execute  the following command:
@@ -133,11 +225,10 @@ You will need current or very recent generations of your operating system:
 **Linux OS**, **Mac OS X**.
 
 ### Directory Structure of the Pipeline
-After downloading **ECemble**, notice inside the **ECemble** directory there are several empty directories and one which contains all of the scripts necessary to process data:
+After downloading **ECemble**, notice inside the **ECemble** directory there are all scripts necessary to process data:
 
 ### Execution of Pipeline
-
-
+The downloaded scripts are used to extract features, train models for each of the 4 EC levels and test models. Please create a ticket under issues section to ask any question related to execution of any script. 
 
 ### Team
 <table align="center">
