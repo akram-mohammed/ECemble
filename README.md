@@ -1,6 +1,6 @@
-<div align="center">
+<!-- <div align="center">
   <img src="download.jpg" width="512">
-</div>
+</div> -->
 
 ---
 
