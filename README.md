@@ -45,7 +45,7 @@ Mohammed A, Guda C. **Application of Hierarchical enzyme classification method r
 
 This README file will serve as a guide for using this software tool. We suggest reading through the entire document at least once, in order to get an idea of the options available, and how to customize the pipeline to fit your needs.
 
-### Downloading CancerDiscover
+### Downloading ECemble
 Clone the git repository:
 ```console
 $ git clone https://github.com/akram-mohammed/ECemble.git && cd ECemble
@@ -107,7 +107,7 @@ biocLite("hgu133plus2cdf")
 It is important to note that not all data must have been derived from affymetrix plates which meet the requirements put in place by the `Affy` `R` package. Plates such as *HG_U95* and *HG_U133* are known to be acceptable as long as their associated `cdf` has been installed.
 
 #### Installing WEKA
-This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `CancerDiscover` directory, execute  the following command:
+This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `ECemble` directory, execute  the following command:
 
 ```
 wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download
