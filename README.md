@@ -137,85 +137,11 @@ cd ../lib/weka-3-7-6
 jar -xvf weka.jar
 jar -xvf weka-src.jar
 ```
-# set classpath
-
-#### UpdateWeka
-# UpdateWeka
-
-1) Acquire weka-src.jar (this should just be in the directory where you install weka).
-
-2) Make a working directory which will house your modified version of weka (dist/ folder)
-
-3) Unzip weka-src.jar into this working directory (simply unzip weka-src.jar)
-
-5) Write your class or make changes to existing weka classes
-
-7) Make the executable jar by running “ant exejar”
-
-8) Check out the dist/ folder for your hot new weka.jar (which should have your new classes in it!)
-
-# .bash_profile
-ANT_HOME=/storage_m/akram/akram/ECemble/lib/apache-ant-1.9.4
-export ANT_HOME
-
-CLASSPATH=/storage_m/akram/akram/ECemble/lib/apache-ant-1.9.4/lib
-export CLASSPATH
-
-PATH=$PATH:$HOME/bin:/storage_m/akram/akram/ECemble/lib/apache-ant-1.9.4/bin
-export PATH
-
-#execute at ANT_HOME
-export ANT_OPTS=-Dbuild.sysclasspath=ignore
-ant -f fetch.xml -Ddest=system
-chmod u+x /storage_m/akram/akram/ECemble/lib/apache-ant-1.9.4/bin/ant
-
-mkdir dist 
-cp weka-src.jar dist/
-cd dist
-jar -xf weka-src.jar
-
-#add whatever java classifier in src/main directory
-/ECemble/lib/weka-3-7-6/dist/src/main/java/weka/classifiers/evaluation/output/prediction/PlainText.java
-Change line 154 to int width = 12 + m_NumDecimals;
-
-ant compile
-ant exejar #creates dist/weka.jar
-cp -r * ../
-cd ../
-jar -xf weka.jar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### Installing WEKA
-This project utilizes [WEKA](http://www.cs.waikato.ac.nz/ml/weka/) 3-6-11. In order to get this version, in a directory outside of the `ECemble` directory, execute  the following command:
-
-```
-wget https://sourceforge.net/projects/weka/files/weka-3-6/3.6.11/weka-3-6-11.zip/download
-```
 Next, set the `WEKA` classpath by entering the following command in `.bashrc` file under Alias definitions:
 ```
 export WEKAINSTALL=/absolute/path/to/weka/directory/`
 export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
 ```
-For example: 
-```
-export WEKAINSTALL=/home/general/weka/weka-3-6-11`
-export CLASSPATH=$CLASSPATH:$WEKAINSTALL/weka.jar
-```
-**Note:** Since WEKA is Java-based framework, the user needs to install and set the classpath for `JAVA`. 
-
 To install ECemble dependencies right from scratch, check out our exhaustive guides:
 * [A Hitchhiker's Guide to Installing ECemble on Linux OS](https://github.com/akram-mohammed/ECemble/wiki/A-Hitchhiker's-Guide-to-Installing-ECemble-on-Linux-OS)
 * [A Hitchhiker's Guide to Installing ECemble on Mac OS X](https://github.com/akram-mohammed/ECemble/wiki/A-Hitchhiker's-Guide-to-Installing-ECemble-on-Mac-OS-X)
